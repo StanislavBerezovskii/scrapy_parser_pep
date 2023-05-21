@@ -1,6 +1,8 @@
 import re
 import scrapy
 
+from urllib.parse import urljoin
+
 from pep_parse.items import PepParseItem
 from pep_parse.settings import PEP_REGEXP
 
@@ -12,7 +14,8 @@ class PepSpider(scrapy.Spider):
 
     def parse(self, response):
         peps = response.css('section#numerical-index td a::attr(href)')
-        for pep_link in peps:
+        for pep_obj in peps:
+            pep_link = urljoin('https://peps.python.org/', pep_obj.extract(), '/')
             yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):
@@ -21,9 +24,8 @@ class PepSpider(scrapy.Spider):
         status = (
             response.css('dt:contains("Status") + dd').css('abbr::text').get()
         )
-        data = {
+        yield PepParseItem({
             'number': number,
             'name': name,
             'status': status,
-        }
-        yield PepParseItem(data)
+        })
