@@ -20,7 +20,7 @@ class PepParsePipeline:
     def close_spider(self, spider):
         results_dir = BASE_DIR / RESULTS_DIR
         file_path = results_dir / FILENAME.format(self.time)
-        file = csv.writer(open(file_path, 'w'))
+        file = csv.writer(open(file_path, 'w', encoding='utf-8'))
         file.writerow(['Статус', 'Количество'])
         self.total['Total'] = sum(self.total.values())
         file.writerows(self.total.items())
