@@ -15,7 +15,10 @@ class PepSpider(scrapy.Spider):
     def parse(self, response):
         peps = response.css('section#numerical-index td a::attr(href)')
         for pep_obj in peps:
-            pep_link = urljoin('https://peps.python.org/', pep_obj.extract(), '/')
+            pep_link = urljoin(
+                'https://peps.python.org/',
+                pep_obj.extract(), '/'
+            )
             yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):
