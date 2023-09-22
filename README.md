@@ -1,22 +1,22 @@
-# Парсер документов PEP на базе Scrapy
+# PEP document parser based on Scrapy
 
-[Описание](#описание) /
-[Развернуть локально](#развернуть-локально) /
-[Документация](#документация) /
-[Автор](#автор) /
-
-
-## Описание
-
-Парсер [scrapy_parser_pep](https://github.com/StanislavBerezovskii/scrapy_parser_pep) собирает документы PEP с ресурса [https://peps.python.org/](https://peps.python.org/) и формирует результат двух типов:
-
-* pep_{datetime}.csv - список всех PEP (номер, название и статус)
-* status_summary_{datetime}.csv - сводка по статусам PEP, сколько найдено документов в каждом статусе (статус, количество)
+[Description](#description) /
+[Deploy locally](#deploy-locally) /
+[Documentation](#documentation) /
+[Author](#author) /
 
 
-## Развернуть локально
+## Description
 
-Склонировать проект, создать виртуальное окружение и проинициализировать зависимости:
+Parser [scrapy_parser_pep](https://github.com/StanislavBerezovskii/scrapy_parser_pep) collects PEP documents from the resource [https://peps.python.org/](https://peps.python.org/) and generates two types of results:
+
+* pep_{datetime}.csv - list of all PEPs (number, name and status)
+* status_summary_{datetime}.csv - summary of PEP statuses, how many documents were found in each status (status, quantity)
+
+
+## Deploy locally
+
+Clone the project, create a virtual environment and initialize dependencies:
 
 ```bash
 git clone https://github.com/StanislavBerezovskii/scrapy_parser_pep.git
@@ -26,14 +26,14 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-## Документация
+## Documentation
 
-Парсер запускается из root-директории проекта командой
+The parser is launched from the root directory of the project with the command
 
 ```bash
 scrapy crawl pep
 ```
 
-## Автор
+## Author
 
 https://github.com/StanislavBerezovskii
